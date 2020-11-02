@@ -1,7 +1,8 @@
 package entities;
 
 import java.sql.Date;
-import java.time.Instant;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -12,6 +13,8 @@ public class Worker {
 	private String name;
 	private WorkerLevel level;
 	private Double baseSalary;
+	
+	
 
 	private Departament departament;
 	private List<HourContract> contracts = new ArrayList<>();
@@ -59,33 +62,32 @@ public class Worker {
 		this.departament = departament;
 	}
 
-	private void addContract(HourContract contract) {
+	public void addContract(HourContract contract) {
 		contracts.add(contract);
 
 	}
 
-	private void removeContract(HourContract contract) {
+	public void removeContract(HourContract contract) {
 		contracts.remove(contract);
 	}
 
-	private Double income(Integer year, Integer month) {
-		double sum = baseSalary;
+	public Double income(Integer year, Integer month) {
+		Double sum = baseSalary;
 		Calendar cal = Calendar.getInstance();
-
-		for (HourContract x : contracts) {
-
-			Date d = x.getDate();
-			cal.setTime(d);
-			int ano = cal.get(Calendar.YEAR);
-			int mes = 1+cal.get(Calendar.MONTH);
-
-			if (year == ano && month == mes) {
-				sum += x.totalValue();
+		
+		for(HourContract x : contracts) {
+			cal.setTime(x.getDate());
+			Integer x_year = cal.YEAR;
+			Integer x_month = cal.MONTH;
+			
+			if(year == x_year && month == x_month) {
+				sum+=x.totalValue();
 			}
 		}
-
 		return sum;
 
 	}
 
 }
+
+
