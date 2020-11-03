@@ -1,8 +1,5 @@
 package entities;
 
-import java.sql.Date;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -78,7 +75,7 @@ public class Worker {
 		for(HourContract x : contracts) {
 			cal.setTime(x.getDate());
 			int x_year = cal.get(Calendar.YEAR);
-			int x_month = cal.get(Calendar.MONTH);
+			int x_month = 1+cal.get(Calendar.MONTH);
 			
 			if(year == x_year && month == x_month) {
 				sum+=x.totalValue();

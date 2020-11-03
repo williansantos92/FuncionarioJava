@@ -1,10 +1,10 @@
 package application;
 
 
+import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
@@ -41,13 +41,13 @@ public class Program {
 		System.out.println("How many contracts to this worker?:");
 		int qnt = sc.nextInt();
 
-		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
 		for (int i = 0; i < qnt; i++) {
 			System.out.println("Enter contract #" + (i + 1) + " data:");
 			
 			System.out.println("Date (DD/MM/YYYY):");
-			Date date =  format.parse(sc.next());			
+			Date contractDate = sdf.parse(sc.next());
 
 			System.out.println("Value per hour:");
 			Double valuePerHour = sc.nextDouble();
@@ -57,15 +57,16 @@ public class Program {
 
 			//Date date = new Date(format.parse(dateString).getTime());
 
-			HourContract hourcontract = new HourContract(date, valuePerHour, hours);
+			HourContract hourcontract = new HourContract(contractDate, valuePerHour, hours);
 			list.add(hourcontract);
 
 		}
-
+		
+		System.out.println();
 		System.out.println("Enter month and year to calculate income (MM/YYYY):");
-		String dateString = sc.nextLine();
-		Integer intMonth = Integer.parseInt(dateString.substring(0, 2));
-		Integer intYear = Integer.parseInt(dateString.substring(3));
+		String dateString = sc.next();
+		int intMonth = Integer.parseInt(dateString.substring(0, 2));
+		int intYear = Integer.parseInt(dateString.substring(3));
 
 		System.out.println("Name: " + worker.getName());
 		System.out.println("Departamet: " + worker.getDepartament().getName());
