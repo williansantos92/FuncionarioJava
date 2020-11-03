@@ -18,6 +18,10 @@ public class HourContract {
 		this.hours = hours;
 	}
 
+	public HourContract(java.util.Date date2, Double valuePerHour2, int hours2) {
+		// TODO Auto-generated constructor stub
+	}
+
 	public Date getDate() {
 		return date;
 	}

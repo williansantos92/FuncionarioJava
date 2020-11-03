@@ -71,14 +71,14 @@ public class Worker {
 		contracts.remove(contract);
 	}
 
-	public Double income(Integer year, Integer month) {
+	public Double income(int year, int month) {
 		Double sum = baseSalary;
 		Calendar cal = Calendar.getInstance();
 		
 		for(HourContract x : contracts) {
 			cal.setTime(x.getDate());
-			Integer x_year = cal.YEAR;
-			Integer x_month = cal.MONTH;
+			int x_year = cal.get(Calendar.YEAR);
+			int x_month = cal.get(Calendar.MONTH);
 			
 			if(year == x_year && month == x_month) {
 				sum+=x.totalValue();
